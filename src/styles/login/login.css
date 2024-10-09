@@ -33,6 +33,10 @@ body {
   z-index: 2; /* Hace que el texto esté por encima de la capa oscura */
 }
 
+.left-box p {
+  font-size: larger;
+}
+
 /*------------ Right box ------------*/
 
 .right-box {
@@ -59,10 +63,18 @@ body {
     margin: 0 10px;
   }
   .left-box {
-    height: 100px;
     overflow: hidden;
+    padding: 1rem;
   }
   .right-box {
     padding: 20px;
+  }
+
+  .left-box h2 {
+    font-size: larger;
+  }
+
+  .left-box p {
+    font-size: smaller;
   }
 }
