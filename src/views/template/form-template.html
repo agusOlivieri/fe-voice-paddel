@@ -11,6 +11,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../../styles/template/form-template.css" />
+    <script
+      src="https://kit.fontawesome.com/1719a834d3.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Voice Padel - Template</title>
   </head>
   <body>
@@ -19,12 +23,35 @@
       class="container-fluid min-vh-100 d-flex flex-column align-items-center justify-content-center"
     >
       <!-- Formulario de ejemplo -->
+
       <div class="row w-100 justify-content-center m-2">
         <div class="col-md-6 col-lg-4 bg-white p-4 rounded-5 shadow">
+          <div class="d-flex align-items-center position-relative">
+            <!----------------------- flecha back -------------------------->
+            <h1 class="me-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="currentColor"
+                class="bi bi-arrow-left"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+                ></path>
+              </svg>
+            </h1>
+
+            <!----------------------- section title -------------------------->
+            <h3 class="mx-auto position-absolute w-100 text-center">Vista</h3>
+          </div>
+
           <div class="d-flex justify-content-center">
             <img
               src="../../styles/images/Logo-VP.png"
-              style="width: 13rem"
+              style="width: 10rem"
               alt=""
             />
           </div>
@@ -33,6 +60,8 @@
             <form action="#" method="POST">
               <div class="mb-4">
                 <h1>Formulario de Ejemplo</h1>
+                <p>Descripcion del formulario</p>
+                <hr class="my-2 custom-hr" />
               </div>
               <!-- Nombre -->
               <div class="mb-3">
@@ -58,6 +87,18 @@
                 />
               </div>
 
+              <!-- Telefono -->
+              <div class="mb-3">
+                <label for="phone" class="form-label">Telefono</label>
+                <input
+                  type="phone"
+                  class="form-control form-control-lg bg-light"
+                  id="phone"
+                  placeholder="Ingresa tu telefono"
+                  required
+                />
+              </div>
+
               <!-- Contraseña -->
               <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
@@ -68,18 +109,6 @@
                   placeholder="Ingresa tu contraseña"
                   required
                 />
-              </div>
-
-              <!-- Checkbox -->
-              <div class="mb-3 form-check">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="rememberMe"
-                />
-                <label class="form-check-label text-secondary" for="rememberMe"
-                  >Recuérdame</label
-                >
               </div>
 
               <!-- Botones -->

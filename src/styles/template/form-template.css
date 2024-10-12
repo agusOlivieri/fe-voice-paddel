@@ -19,6 +19,13 @@ label {
   font-weight: 500;
 }
 
+.custom-hr {
+  height: 2px; /* Controla el grosor de la línea */
+  width: 100%; /* Ajusta el ancho, puede ser porcentaje o un valor fijo como 80% */
+  background-color: black; /* Color de la línea */
+  border: none; /* Elimina cualquier borde por defecto */
+}
+
 .btn-primary {
   background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
   border: none;
