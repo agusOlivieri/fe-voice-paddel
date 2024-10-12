@@ -17,7 +17,7 @@
         <div class="container">
             <div class="form-container">
 
-                <form class="needs-validation" novalidate>
+                <form id="registerForm" class="needs-validation" novalidate>
                     <div class="mb-4">
                         <h1>Registro</h1>
                         <p>Crea tu cuenta para jugar!</p>
@@ -103,6 +103,37 @@
 
                     form.classList.add('was-validated')
                 }, false)
+            })
+
+            document.getElementById('registerForm').addEventListener('submit', (e) => {
+                e.preventDefault()
+
+                const username = document.getElementById('username').value
+                const email = document.getElementById('email').value
+                const password = document.getElementById('inputPassword').value
+
+                const formData = {
+                    username: username,
+                    email: email,
+                    password: password
+                }
+
+                fetch('https://voice-paddel-fmgzeugkg5bjh6f9.brazilsouth-01.azurewebsites.net/api/user/register', {
+                    methood: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    alert('Registro exitoso!')
+                })
+                .catch(error => {
+                    console.error('Error:', error)
+                    alert('Hubo un error al registrar. Por favor, inténtelo de nuevo.')
+                })
             })
         })()
     </script>
