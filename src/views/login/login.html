@@ -14,29 +14,21 @@
     <title>Voice Padel - Iniciar Sesión</title>
   </head>
   <body>
-    <!----------------------- Main Container -------------------------->
-
-    <div class="container d-flex justify-content-center align-items-center">
-      <!----------------------- Login Container -------------------------->
-
+    <div
+      class="container d-flex justify-content-center align-items-center min-vh-100"
+    >
       <div class="row border rounded-5 p-3 bg-white shadow box-area">
-        <!--------------------------- Left Box ----------------------------->
-
         <div
-          class="col-md-6 col-12 rounded-4 d-flex justify-content-center align-items-center flex-column left-box position-relative"
+          class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
           style="background: linear-gradient(90deg, #d53369 0%, #daae51 100%)"
         >
           <div class="p-3 h-100 align-content-center text-center">
-            <h2 class="text-white text-break" style="font-weight: 600">
+            <h2 class="text-white" style="font-weight: 600">
               ¡Diviértete jugando al Padel con amigos!
             </h2>
-            <p class="text-white text-wrap text-center mb-0">
-              Nosotros llevamos la cuenta
-            </p>
+            <p class="text-white mb-0">Nosotros llevamos la cuenta</p>
           </div>
         </div>
-
-        <!-------------------- ------ Right Box ---------------------------->
 
         <div class="col-md-6 right-box">
           <div class="row align-items-center">
@@ -44,7 +36,7 @@
               <img
                 src="../../styles/images/Logo-VP.png"
                 style="width: 13rem"
-                alt=""
+                alt="Logo Voice Padel"
               />
             </div>
 
@@ -52,49 +44,36 @@
               <h1>Iniciar Sesión</h1>
               <p>¡Encantados de verte de vuelta!</p>
             </div>
+
+            <!-- Campo de username -->
             <div class="input-group mb-3">
               <input
                 type="text"
+                id="username"
                 class="form-control form-control-lg bg-light fs-6"
-                placeholder="Email address"
+                placeholder="username"
+                required
               />
             </div>
-            <div class="input-group mb-1">
+
+            <!-- Campo de Contraseña -->
+            <div class="input-group mb-3">
               <input
                 type="password"
+                id="password"
                 class="form-control form-control-lg bg-light fs-6"
                 placeholder="Password"
+                required
               />
             </div>
-            <div class="input-group mb-5 d-flex justify-content-between">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="formCheck"
-                />
-                <label for="formCheck" class="form-check-label text-secondary"
-                  ><small>Recordarme</small></label
-                >
-              </div>
-              <div class="forgot">
-                <small><a href="#">¿Has olvidado tu contraseña?</a></small>
-              </div>
-            </div>
+
+            <!-- Botón para Iniciar Sesión -->
             <div class="input-group mb-3">
-              <button class="btn btn-lg btn-primary w-100 fs-6">
+              <button id="loginBtn" class="btn btn-lg btn-primary w-100 fs-6">
                 Iniciar Sesión
               </button>
             </div>
-            <div class="input-group mb-3">
-              <button class="btn btn-lg btn-light w-100 fs-6">
-                <img
-                  src="../../styles/images/icons8-logo-de-google-48.png"
-                  style="width: 20px"
-                  class="me-2"
-                /><small>Iniciar sesión con Google</small>
-              </button>
-            </div>
+
             <div class="row">
               <small
                 >¿Aún no estás registrado? <a href="#">Registrarme</a></small
@@ -104,5 +83,57 @@
         </div>
       </div>
     </div>
+
+    <script>
+      document.getElementById("loginBtn").addEventListener("click", (event) => {
+        event.preventDefault(); // Evita que la página se recargue
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Verificación simple de campos vacíos
+        if (!username || !password) {
+          alert("Por favor, completa todos los campos.");
+          return;
+        }
+
+        // Crear el objeto con los datos del formulario
+        const loginData = {
+          username: username,
+          password: password,
+        };
+
+        // Enviar los datos al servidor usando fetch
+        fetch(
+          "https://voice-paddel-fmgzeugkg5bjh6f9.brazilsouth-01.azurewebsites.net/api/user/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginData),
+          }
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Credenciales incorrectas");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            alert("¡Inicio de sesión exitoso!");
+            // Redirigir a la página principal (ejemplo)
+            window.location.href = "/home";
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            console.log(JSON.stringify(loginData));
+            alert(
+              "Hubo un problema al iniciar sesión. Por favor, intenta de nuevo."
+            );
+          });
+      });
+    </script>
   </body>
 </html>
