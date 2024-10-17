@@ -77,46 +77,44 @@
     </main>
 
     <script>
-        // validación personalizada de bootstrap
-        (function () {
-            'use strict'
+// Validación personalizada de Bootstrap
+(function () {
+    'use strict';
 
-            const forms = document.querySelectorAll('.needs-validation')
+    // Seleccionamos todos los formularios con la clase 'needs-validation'
+    const forms = document.querySelectorAll('.needs-validation');
 
-            Array.prototype.slice.call(forms).forEach(function (form) {
-                form.addEventListener('submit', (event) => {
-                    const password = document.getElementById('inputPassword')
-                    const confirmPassword = document.getElementById('confirm-password')
-                    
-                    // comprobar si las contraseñas coinciden
-                    if(password.value !== confirmPassword.value) {
-                        confirmPassword.setCustomValidity('Las contraseñas no coinciden.')
-                    } else {
-                        confirmPassword.setCustomValidity('')
-                    }
+    // Recorremos los formularios
+    Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            const password = document.getElementById('inputPassword');
+            const confirmPassword = document.getElementById('confirm-password');
 
-                    // verificar la validez del form
-                    if(!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
+            // Comprobar si las contraseñas coinciden
+            if (password.value !== confirmPassword.value) {
+                confirmPassword.setCustomValidity('Las contraseñas no coinciden.');
+            } else {
+                confirmPassword.setCustomValidity(''); // Restablecer validez si coinciden
+            }
 
-                    form.classList.add('was-validated')
-                }, false)
-            })
+            // Si el formulario no es válido
+            if (!form.checkValidity()) {
+                event.preventDefault();  // Detenemos el envío
+                event.stopPropagation(); // Evitamos otros manejadores
+            } else {
+                // Si es válido, prevenimos la recarga y ejecutamos el fetch
+                event.preventDefault();
 
-            document.getElementById('registerForm').addEventListener('submit', (e) => {
-                e.preventDefault()
-
-                const username = document.getElementById('username').value
-                const email = document.getElementById('email').value
-                const password = document.getElementById('inputPassword').value
+                // Hacemos el fetch
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('inputPassword').value;
 
                 const formData = {
                     username: username,
                     email: email,
                     password: password
-                }
+                };
 
                 fetch('https://voice-paddel-fmgzeugkg5bjh6f9.brazilsouth-01.azurewebsites.net/api/user/register', {
                     method: 'POST',
@@ -127,15 +125,20 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    alert('Registro exitoso!')
+                    console.log(data);
+                    alert('Registro exitoso!');
                 })
                 .catch(error => {
-                    console.error('Error:', error)
-                    alert('Hubo un error al registrar. Por favor, inténtelo de nuevo.')
-                })
-            })
-        })()
+                    console.error('Error:', error);
+                    alert('Hubo un error al registrar. Por favor, inténtelo de nuevo.');
+                });
+            }
+
+            // Agregamos la clase 'was-validated' para activar los estilos de validación de Bootstrap
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
     </script>
 </body>
 </html>
