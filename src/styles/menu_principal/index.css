@@ -1,0 +1,43 @@
+button, .btn {
+    background-color: transparent !important;  /* Fondo transparente */
+    color: inherit !important;                 /* Mantener el color de texto original */
+    border: none !important;                   /* Sin borde */
+    padding: 0;                                /* Sin padding si lo deseas */
+    box-shadow: none !important;               /* Sin sombras */
+    transition: none !important;               /* Sin transiciones */
+    outline: none !important;                  /* Sin contornos */
+}
+
+main {
+    color: white;
+}
+
+.menu-container {
+    margin: 100px 20%;
+    height: 400px;
+    border: 2px solid black;
+    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+}
+
+.menu-container div {
+    margin: 0;
+}
+
+.col {
+    border: 2px solid wheat;
+}
+
+.btn-custom {
+    width: 100%;
+    height: 120px; /* Aumenta la altura de los botones */
+    background-color: rgba(145, 122, 122, 0.467); /* Color de fondo semitransparente */
+    color: black;
+    border: 2px solid wheat;
+    font-size: 1.5rem; /* Tamaño del texto */
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    text-align: center;
+    /* transition: background-color 0.3s ease; */
+}
+
