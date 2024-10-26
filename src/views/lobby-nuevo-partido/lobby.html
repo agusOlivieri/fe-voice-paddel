@@ -71,11 +71,13 @@
               />
               <h5>Equipo Rojo</h5>
               <input
+                id="firstPlayerTeamA"
                 type="text"
                 class="form-control player-input"
                 placeholder="Nombre del Jugador 1"
               />
               <input
+                id="secondPlayerTeamA"
                 type="text"
                 class="form-control player-input mt-2"
                 placeholder="Nombre del Jugador 2"
@@ -102,11 +104,13 @@
               />
               <h5>Equipo Azul</h5>
               <input
+                id="firstPlayerTeamB"
                 type="text"
                 class="form-control player-input"
                 placeholder="Nombre del Jugador 1"
               />
               <input
+                id="secondPlayerTeamB"
                 type="text"
                 class="form-control player-input mt-2"
                 placeholder="Nombre del Jugador 2"
@@ -117,7 +121,7 @@
 
         <!-- Serve Buttons -->
         <div class="row mt-5">
-          <button class="btn btn-serve col-6 mx-auto text-center">
+          <button id="start-match" class="btn btn-serve col-6 mx-auto text-center">
             Iniciar Partido
           </button>
         </div>
@@ -150,6 +154,62 @@
               break;
           }
         });
+
+        const params = new URLSearchParams(window.location.search);
+
+        const matchIdentifier = params.get('matchIdentifier');
+
+        document.getElementById('start-match').addEventListener('click', function() {
+          // Obtener los valores de los campos de texto
+          const firstPlayerTeamA = document.getElementById('firstPlayerTeamA').value;
+          const secondPlayerTeamA = document.getElementById('secondPlayerTeamA').value;
+          const firstPlayerTeamB = document.getElementById('firstPlayerTeamB').value;
+          const secondPlayerTeamB = document.getElementById('secondPlayerTeamB').value;
+
+              // Verificar si los campos están vacíos
+          if (!firstPlayerTeamA && !secondPlayerTeamA && !firstPlayerTeamB && !secondPlayerTeamB) {
+              // Activar validación de Bootstrap
+              const firstField = document.getElementById('firstPlayerTeamA');
+              firstField.classList.add('is-invalid');
+
+              // Puedes mostrar un mensaje adicional si lo deseas
+              return; // Detener la ejecución
+          } else {
+              // Limpiar la clase de error si ya hay un valor
+              document.getElementById('firstPlayerTeamA').classList.remove('is-invalid');
+          }
+
+          // Armar el objeto para el body del fetch
+          const data = {
+              FirstPlayerNameTeamA: firstPlayerTeamA,
+              SecondPlayerTeamA: secondPlayerTeamA,
+              FirstPlayerTeamB: firstPlayerTeamB,
+              SecondPlayerTeamB: secondPlayerTeamB
+          };
+
+          // Hacer el fetch
+          fetch('https://voice-paddel-fmgzeugkg5bjh6f9.brazilsouth-01.azurewebsites.net/api/match/startQuickMatch', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Error en la red');
+              }
+              return response.json();
+          })
+          .then(data => {
+              console.log('Éxito:', data);
+              const baseUrl = `${window.location.protocol}//${window.location.host}`;
+              window.location.href = baseUrl + '/src/views/match/match.html?matchIdentifier=' + data.matchIdentifier;
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+      });
     </script>
   </body>
 </html>
