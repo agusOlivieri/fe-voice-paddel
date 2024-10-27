@@ -123,7 +123,7 @@
           })
           .then((data) => {
             console.log(data);
-            alert("¡Inicio de sesión exitoso!");
+            localStorage.setItem('accessToken', data.accessToken);
             // Redirigir a la página principal (ejemplo)
             window.location.href = "../index.html";
           })
