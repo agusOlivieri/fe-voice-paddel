@@ -10,45 +10,25 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
     crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <title>VoicePaddel</title>
 </head>
 <body>
     <main>
-        <div class="container">
-            <div class="menu-container d-flex flex-column justify-content-center">
-                <!-- 1er fila-->
-                <div class="row row-cols-2 g-3">
-                    <!--  Boton de crear lobby -->
-                    <div class="col-6">
-                        <button class="btn btn-custom">
-                            <a>Crear Lobby</a>
-                        </button>
-                    </div>
-                    
-                    <!-- Bóton para unirse a partida -->
-                    <div class="col-6">
-                        <button class="btn btn-custom">
-                            <a>Unirse a Lobby</a>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 2da fila --> 
-                <div class="row row-cols-2 g-3 mt-3">
-                    <!-- Botón para ver estadísticas -->
-                    <div class="col-6">
-                        <button class="btn btn-custom">
-                            <a>Ver estadísticas</a>
-                        </button>
-                    </div>
-
-                    <!-- Perfil de usuario -->
-                    <div class="col-6">
-                        <button class="btn btn-custom">
-                            <a>Perfil</a>
-                        </button>
-                    </div>
-                </div>
+        <div class="container p-0 d-flex align-items-center">
+            <div class="menu-container p-2 w-100">
+                <a href="#" class="custom-btn d-flex flex-column justify-content-center align-items-center fw-bolder">
+                    <i class="bi bi-plus-circle"></i> Crear Lobby
+                </a>
+                <a href="#" class="custom-btn d-flex flex-column justify-content-center align-items-center fw-bolder">
+                    <i class="bi bi-box-arrow-in-right"></i> Unirse a Lobby
+                </a>
+                <a href="#" class="custom-btn d-flex flex-column justify-content-center align-items-center fw-bolder">
+                    <i class="bi bi-person"></i> Mi cuenta
+                </a>
+                <a href="#" class="custom-btn d-flex flex-column justify-content-center align-items-center fw-bolder">
+                    <i class="bi bi-bar-chart-line"></i> Estadísticas
+                </a>
             </div>
         </div>
     </main>
