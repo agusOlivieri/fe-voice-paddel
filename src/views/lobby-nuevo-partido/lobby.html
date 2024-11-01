@@ -204,7 +204,8 @@
           .then(data => {
               console.log('Éxito:', data);
               const baseUrl = `${window.location.protocol}//${window.location.host}`;
-              window.location.href = baseUrl + '/src/views/match/match.html?matchIdentifier=' + data.matchIdentifier;
+              const githubPagesPrefix = baseUrl.includes('github') ? '/fe-voice-paddel' : '';
+              window.location.href = baseUrl + githubPagesPrefix + '/src/views/match/match.html?matchIdentifier=' + data.matchIdentifier;
           })
           .catch((error) => {
               console.error('Error:', error);
