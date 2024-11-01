@@ -16,10 +16,18 @@ startTimer();
 }
 
 function setMatchPoints(data) {
-document.getElementById("pointsTeamA").innerText = data.currentPointsTeamA.toString().padStart(2, '0');
-document.getElementById("pointsTeamB").innerText = data.currentPointsTeamB.toString().padStart(2, '0');
-document.getElementById("pointsTeamA").innerText = data.currentPointsTeamA.toString().padStart(2, '0');
-document.getElementById("pointsTeamB").innerText = data.currentPointsTeamB.toString().padStart(2, '0');
+    document.getElementById("pointsTeamA").innerText = data.currentPointsTeamA.toString().padStart(2, '0');
+    document.getElementById("pointsTeamB").innerText = data.currentPointsTeamB.toString().padStart(2, '0');
+    document.getElementById("pointsTeamA").innerText = data.currentPointsTeamA.toString().padStart(2, '0');
+    document.getElementById("pointsTeamB").innerText = data.currentPointsTeamB.toString().padStart(2, '0');
+
+    document.getElementById("firstSetnumGamesTeamA").innerText = data.set1NumberOfGamesWonByTeamA ?? 0;
+    document.getElementById("secondSetnumGamesTeamA").innerText = data.set2NumberOfGamesWonByTeamA ?? 0;
+    document.getElementById("thirdSetnumGamesTeamA").innerText = data.set3NumberOfGamesWonByTeamA ?? 0;
+
+    document.getElementById("firstSetnumGamesTeamB").innerText = data.set1NumberOfGamesWonByTeamB ?? 0;
+    document.getElementById("secondSetnumGamesTeamB").innerText = data.set2NumberOfGamesWonByTeamB ?? 0;
+    document.getElementById("thirdSetnumGamesTeamB").innerText = data.set3NumberOfGamesWonByTeamB ?? 0;
 
 currentGameGuid = data.currentGameGuid;
 }
